@@ -43,7 +43,7 @@ Useful options:
 Generation
 ----------
 Generate from a saved checkpoint:
-   python tiny_llm.py generate --checkpoint tiny_llm.pt --prompt "Once " --tokens 120
+   py tiny_llm.py generate --checkpoint tiny_llm.pt --prompt "Once " --tokens 120
 
 Notes:
 - Prompt characters must exist in the model's learned character set.
