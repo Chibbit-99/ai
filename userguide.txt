@@ -1,0 +1,68 @@
+Tiny Python LLM User Guide
+==========================
+
+Overview
+--------
+This project provides a small, educational GPT-style character language model
+implemented in Python with PyTorch.
+
+Files
+-----
+- tiny_llm.py      Main script for training and generation.
+- requirements.txt Python dependencies.
+- README.md        Quick-start summary.
+- userguide.txt    This detailed guide.
+
+Setup
+-----
+1) Create and activate a virtual environment (recommended):
+   python -m venv .venv
+   source .venv/bin/activate
+
+2) Install dependencies:
+   pip install -r requirements.txt
+
+3) Confirm Python can run the script:
+   python tiny_llm.py --help
+
+Training
+--------
+Basic training with built-in sample text:
+   python tiny_llm.py train --steps 300 --save tiny_llm.pt --prompt "In " --tokens 120
+
+Train on your own UTF-8 corpus:
+   python tiny_llm.py train --text your_corpus.txt --steps 1000 --save tiny_llm.pt
+
+Useful options:
+- --steps <int>      Number of optimization steps.
+- --text <path>      Optional text file for training.
+- --save <path>      Checkpoint output path.
+- --prompt <string>  Prompt used for post-training sample.
+- --tokens <int>     Number of generated tokens for sample output.
+
+Generation
+----------
+Generate from a saved checkpoint:
+   python tiny_llm.py generate --checkpoint tiny_llm.pt --prompt "Once " --tokens 120
+
+Notes:
+- Prompt characters must exist in the model's learned character set.
+- This model is character-level and intentionally small.
+
+Troubleshooting
+---------------
+- ModuleNotFoundError: No module named 'torch'
+  Install dependencies with: pip install -r requirements.txt
+
+- ValueError about unseen characters in prompt
+  Use only characters found in training data, or retrain on a corpus containing
+  your desired characters.
+
+- Slow training
+  Reduce --steps, or use a machine with GPU support.
+
+Limitations
+-----------
+- Educational reference implementation, not production LLM.
+- Small context window and model size.
+- Quality depends heavily on corpus size and variety.
